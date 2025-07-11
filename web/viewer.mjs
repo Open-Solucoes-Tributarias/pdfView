@@ -16247,9 +16247,10 @@ initCom(PDFViewerApplication);
 {
   const HOSTED_VIEWER_ORIGINS = new Set(["null", "http://mozilla.github.io", "https://mozilla.github.io"]);
   var validateFileURL = function (file) {
-    if (!file) {
+    // if (!file) { desativar a verificação para cross origin
       return;
-    }
+  }
+    // }
     const viewerOrigin = URL.parse(window.location)?.origin || "null";
     if (HOSTED_VIEWER_ORIGINS.has(viewerOrigin)) {
       return;
