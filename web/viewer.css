@@ -6141,7 +6141,17 @@ dialog :link{
   display:none;
 }
 
-@media print{
+@media print {
+  body {
+    display: none !important; /* Some tudo na hora da impressão */
+  }
+
+  #outerContainer,
+  #printContainer {
+    display: none !important;
+  }
+}
+/* @media print{
   body{
     background:rgb(0 0 0 / 0) none;
   }
@@ -6188,7 +6198,7 @@ dialog :link{
     direction:ltr;
     display:block;
   }
-}
+} */
 
 .visibleMediumView{
   display:none !important;
