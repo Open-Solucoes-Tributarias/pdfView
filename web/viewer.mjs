@@ -16244,43 +16244,25 @@ initCom(PDFViewerApplication);
 {
   PDFPrintServiceFactory.initGlobals(PDFViewerApplication);
 }
-// {
-//   const HOSTED_VIEWER_ORIGINS = new Set(["null", "http://mozilla.github.io", "https://mozilla.github.io"]);
-//   var validateFileURL = function (file) {
-//     if (!file) {
-//       return;
-//     }
-//     const viewerOrigin = URL.parse(window.location)?.origin || "null";
-//     if (HOSTED_VIEWER_ORIGINS.has(viewerOrigin)) {
-//       return;
-//     }
-//     const fileOrigin = URL.parse(file, window.location)?.origin;
-//     if (fileOrigin === viewerOrigin) {
-//       return;
-//     }
-//     const ex = new Error("file origin does not match viewer's");
-//     PDFViewerApplication._documentError("pdfjs-loading-error", {
-//       message: ex.message
-//     });
-//     throw ex;
-//   };
-//   var onFileInputChange = function (evt) {
-//     if (this.pdfViewer?.isInPresentationMode) {
-//       return;
-//     }
-//     const file = evt.fileInput.files[0];
-//     this.open({
-//       url: URL.createObjectURL(file),
-//       originalUrl: encodeURIComponent(file.name)
-//     });
-//   };
-//   var onOpenFile = function (evt) {
-//     this._openFileInput?.click();
-//   };
-// }
 var validateFileURL = function (file) {
-  // Verificação de origem desativada para permitir qualquer link externo
+  // Verificação desativada para permitir qualquer link externo
   return;
+};
+
+// MANTENHA essas funções (não comente elas):
+var onFileInputChange = function (evt) {
+  if (this.pdfViewer?.isInPresentationMode) {
+    return;
+  }
+  const file = evt.fileInput.files[0];
+  this.open({
+    url: URL.createObjectURL(file),
+    originalUrl: encodeURIComponent(file.name)
+  });
+};
+
+var onOpenFile = function (evt) {
+  this._openFileInput?.click();
 };
 function onPageRender({
   pageNumber
